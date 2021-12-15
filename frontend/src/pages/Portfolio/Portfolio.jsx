@@ -1,17 +1,23 @@
 import { Link } from 'react-router-dom'
-import Card from '../../components/Card'
+import PortfolioCard from '../../components/PortfolioCard'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import { Loader } from '../../utils/style/Atoms'
 import { useFetch, useTheme } from '../../utils/hooks'
 
 const CardsContainer = styled.section`
-  display: grid;
-  gap: 24px;
-  grid-template-rows: 350px 350px;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  gap: 40px;
   align-items: center;
   justify-items: center;
+  justify-content: center;
+  margin: 25px;
+  flex-wrap: wrap;
+  animation: apparition-prog 800ms linear 400ms both;
+  transition: all 400ms;
+  @media screen and (min-width: 1280px){
+    gap: 80px;
+  }
 `
 
 const PageTitle = styled.h1`
@@ -43,44 +49,17 @@ function Portfolio() {
     `http://localhost:8000/portfolio`
   )
 
-  // Ici le "?" permet de s'assurer que data existe bien.
-  // Vous pouvez en apprendre davantage sur cette notation ici :
-  // https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Optional_chaining
   const portfolioList = data?.portfolioList
-
-  /* SYNTAXE ES7 avec Try / Catch / Finally et UseEffect
-    const [isDataLoading, setDataLoading] = useState(false)
-    const [error, setError] = useState(false)
-    const [freelancersList, setFreelancesList] = useState([])
-
-    useEffect(() => {
-      async function fetchFreelances() {
-        setDataLoading(true)
-        try {
-          const response = await fetch(`http://localhost:8000/freelances`)
-          const { freelancersList } = await response.json()
-          setFreelancesList(freelancersList)
-        } catch (err) {
-          console.log('===== error =====', err)
-          setError(true)
-        } finally {
-          setDataLoading(false)
-        }
-      }
-      fetchFreelances()
-    }, [])
-  */
 
   if (error) {
     return <span>Oups, il y a eu un problème</span>
   }
 
-
   return (
     <div>
       <PageTitle theme={theme}>Voici quelques-unes de nos réalisations</PageTitle>
       <PageSubtitle theme={theme}>
-        Chez Becom', nous vous accompagnons dans la réalisation de vos projets de développement web et multimédia
+        Chez Becom'In, nous vous accompagnons dans la réalisation de vos projets de développement web et multimédia
       </PageSubtitle>
       {isLoading ? (
         <LoaderWrapper>
@@ -90,7 +69,7 @@ function Portfolio() {
         <CardsContainer>
           {portfolioList?.map((example) => (
             <Link key={`example-${example.id}`} to={`/portfolio/${example.id}`}>
-              <Card
+              <PortfolioCard
                 title={example.name}
                 picture={example.cover}
                 label={example.description}
