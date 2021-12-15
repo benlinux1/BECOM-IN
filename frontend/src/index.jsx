@@ -9,6 +9,7 @@ import Home from './pages/Home/Home';
 import Survey from './pages/Survey/Survey'
 import Results from './pages/Results/Results'
 import Portfolio from './pages/Portfolio/Portfolio'
+import PortfolioExample from './pages/PortfolioExample/PortfolioExample'
 import Prestation from './pages/Prestation/Prestation'
 import Languages from './pages/Languages/Languages'
 import Footer from './components/Footer'
@@ -39,6 +40,10 @@ ReactDOM.render(
                         <Route path="/portfolio">
                             <Portfolio />
                         </Route>
+                        <Route
+                            path="/example/:id"
+                            render={(props) => <PortfolioExample {...props} />}
+                        />
                         <Route
                             path="/prestation/:id"
                             render={(props) => <Prestation {...props} />}

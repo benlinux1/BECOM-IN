@@ -4,6 +4,7 @@ const getSurvey = require('../controllers/survey')
 const getPrestations = require('../controllers/prestations')
 const getPrestation = require('../controllers/prestation')
 const getPortfolio = require('../controllers/portfolio')
+const getPortfolioExample = require('../controllers/portfolioExample')
 const getLanguages = require('../controllers/languages')
 const getResults = require('../controllers/results')
 const getContactInformations = require('../controllers/entity')
@@ -45,6 +46,16 @@ router.get('/prestations', function (req, res, next) {
 router.get('/portfolio', function (req, res, next) {
 	const portfolioList = getPortfolio()
 	res.send({ portfolioList })
+})
+
+router.get('/example', function (req, res) {
+	const { id } = req.query
+	const portfolioExample = getPortfolioExample(id)
+		if (!portfolioExample) {
+			res.status(400).send('Réalisation non trouvée')
+		} else {
+			res.send({ portfolioExample })
+		}
 })
 
 router.get('/languages', function (req, res, next) {

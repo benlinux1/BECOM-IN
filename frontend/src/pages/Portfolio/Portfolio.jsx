@@ -32,7 +32,7 @@ const PageSubtitle = styled.h2`
   color: ${colors.secondary};
   font-weight: 300;
   text-align: center;
-  padding-bottom: 30px;
+  padding: 0 40px 30px 40px;
   color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `
 
@@ -68,7 +68,7 @@ function Portfolio() {
       ) : (
         <CardsContainer>
           {portfolioList?.map((example) => (
-            <Link key={`example-${example.id}`} to={`/portfolio/${example.id}`}>
+            <Link key={`example-${example.id}`} to={`/example/${example.id}`}>
               <PortfolioCard
                 title={example.name}
                 picture={example.cover}
