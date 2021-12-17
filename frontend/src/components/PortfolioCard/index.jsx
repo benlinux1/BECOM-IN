@@ -13,8 +13,8 @@ color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
 `
 
 const CardImage = styled.img`
-  height: 200px;
-  width: 220px;
+  height: 100px;
+  width: 100px;
   align-self: center;
   border-radius: 20px;
   object-fit: cover top;
@@ -44,9 +44,9 @@ const CardWrapper = styled.article`
   background-color: ${({ theme }) =>
     theme === 'light' ? 'white' : colors.backgroundDark};
   border-radius: 30px;
-  min-width: 280px;
-  max-width: 380px;
-  height: 340px;
+  min-width: 200px;
+  max-width: 280px;
+  min-height: 250px;
   transition: all 200ms;
   box-shadow: ${({ theme }) =>
     theme === 'light' ? '1px 1px 6px #e2e3e9' : 'none'}; 

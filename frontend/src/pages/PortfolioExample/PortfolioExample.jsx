@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom'
 import colors from '../../utils/style/colors'
@@ -36,6 +37,11 @@ const Logo = styled.img`
 `
 
 
+const PreviousPage = styled.button`
+  margin-right: 30px;
+`
+
+
 const ProjectDetails = styled.section`
   display: flex;
   flex-direction: column;
@@ -70,6 +76,8 @@ const SkillsWrapper = styled.div`
   flex-direction: row;
   padding: 10px 0;
   flex-wrap : wrap;
+  padding-right: 30px;
+  transition: all 400ms;
 `
 
 const Skill = styled.span`
@@ -119,8 +127,8 @@ const PicturesWrapper = styled.section`
 
 
 const Picture = styled.img`
-  max-height: 250px;
-  max-width: 280px;
+  max-height: 240px;
+  max-width: 240px;
   border-radius: 20px;
   margin : 20px 20px;
   object-fit: fill;
@@ -169,12 +177,15 @@ function PortfolioExample() {
     videos,
   } = portfolioExample
 
+  let history = useHistory();
+
   return (
     <ThemeContext.Consumer>
       {({ theme }) => (
         <ProjectWrapper theme={theme}>
           <EntityWrapper>
             <LogoWrapper>
+              <PreviousPage onClick={history.goBack} title='Page précédente'>Retour</PreviousPage>
               <Logo src={logo} alt={name} />
             </LogoWrapper>
             <ProjectDetails theme={theme}>
